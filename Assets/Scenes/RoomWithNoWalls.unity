@@ -3711,8 +3711,8 @@ MonoBehaviour:
   mouseSensitivity: 1500
   myCamera: {fileID: 0}
   myController: {fileID: 60776234}
-  movSpeed: 10
-  gravVelDelta: 100
+  movSpeed: 7
+  gravVelDelta: 10
 --- !u!1 &62280777
 GameObject:
   m_ObjectHideFlags: 0
