@@ -22,8 +22,12 @@ public class align_script : MonoBehaviour
 
     void align(Transform _alignTo, Transform _toAlign)
     {
-        fakeRoom.transform.rotation = _alignTo.rotation;
+        //print(_alignTo.rotation.y);
+
+        
+
         fakeRoom.transform.position = Vector3.zero;
+        fakeRoom.transform.rotation = _toAlign.rotation;
 
         Vector3 to_trans = _alignTo.position - _toAlign.position ;
 
