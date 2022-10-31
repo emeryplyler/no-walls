@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController myController;
     public float movSpeed = 10f;
 
+    [SerializeField] align_script alignment_script;
     // Gravity
     private float yVel;
     [Tooltip("The amount to subtract from the player's Y velocity every update when gravity affets them.\nGets multiplied by Time.deltaTime .")]
@@ -63,5 +64,19 @@ public class PlayerMovement : MonoBehaviour
         movVector = movRotationQuat * movVector;
 
         myController.Move(movVector * Time.deltaTime * movSpeed);
+
+
+        handleRaycast();
+    }
+    void handleRaycast()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(myCamera.transform.position,myCamera.transform.forward, out hit))
+        {
+            Vector3 result = hit.point;
+            alignment_script.checkToAlign(result);
+            print(result);
+            //this.alignment_script.checkToAlign(result);
+        }
     }
 }

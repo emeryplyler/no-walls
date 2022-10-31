@@ -5,29 +5,48 @@ using UnityEngine;
 public class align_script : MonoBehaviour
 {
     public GameObject mainRoom, fakeRoom;
-    public GameObject alignTo, toAlign;
-
+    public GameObject player;
 
     [SerializeField] public GameObject[] startingStair;
     [SerializeField] public GameObject[] destinationStair;
     [SerializeField] public int[] rotateBy;
-    public int i = 0;
+    
 
+
+    private GameObject currAlignment;
     // Start is called before the first frame update
     void Start()
     {
-        
-        //fakeRoom.transform.position = Vector3(1002,0,-300);
-        align(startingStair[i].transform,destinationStair[i].transform,rotateBy[i]);
-        //align(startingStair[i+1].transform,destinationStair[i+1].transform,rotateBy[i+1]);
-        
+        currAlignment = startingStair[0];
     }
 
     // Update is called once per frame
-    void Update()
+
+    public void checkToAlign(Vector3 _target)
     {
- 
+        float closestDistance = Vector3.Distance(player.transform.position,currAlignment.transform.position);
+        GameObject closestObject = currAlignment;
+        foreach (var stair in startingStair)
+        {
+            float curr = Vector3.Distance(player.transform.position,stair.transform.position);
+            if (curr < closestDistance)
+            {
+                closestObject = stair;
+                closestDistance = curr;
+            }
+            if (closestObject != currAlignment)
+            {
+                print("new spot");
+                currAlignment = closestObject;
+                int newIndex = System.Array.IndexOf(startingStair,currAlignment);
+                align(startingStair[newIndex].transform,destinationStair[newIndex].transform,rotateBy[newIndex]);
+            }
+
+        }
     }
+
+
+
 
     void align(Transform _alignTo, Transform _toAlign, int _rotate)
     {
@@ -36,8 +55,6 @@ public class align_script : MonoBehaviour
         
         
         //print(Mathf.Rad2Deg * _alignTo.rotation.y + " " + Mathf.Rad2Deg * _toAlign.rotation.y);
-        print(_alignTo.rotation);
-        print(_toAlign.rotation);
         //fakeRoom.transform.position = Vector3.zero;
 
         fakeRoom.transform.rotation = new Quaternion(0,0,0,1);
