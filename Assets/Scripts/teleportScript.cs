@@ -46,8 +46,10 @@ public class teleportScript : MonoBehaviour
         if (other.name == "Capsule")
         {
             readyToTeleport = true;
+
         }
     }
+
     // Update is called once per frame
     // void Update()
     // {
