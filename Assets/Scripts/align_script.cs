@@ -36,7 +36,7 @@ public class align_script : MonoBehaviour
             }
             if (closestObject != currAlignment)
             {
-                print("new spot");
+            
                 currAlignment = closestObject;
                 int newIndex = System.Array.IndexOf(startingStair,currAlignment);
                 align(startingStair[newIndex].transform,destinationStair[newIndex].transform,rotateBy[newIndex]);
@@ -50,11 +50,7 @@ public class align_script : MonoBehaviour
 
     void align(Transform _alignTo, Transform _toAlign, int _rotate)
     {
-        //print(_alignTo.rotation.y);
 
-        
-        
-        //print(Mathf.Rad2Deg * _alignTo.rotation.y + " " + Mathf.Rad2Deg * _toAlign.rotation.y);
         //fakeRoom.transform.position = Vector3.zero;
 
         fakeRoom.transform.rotation = new Quaternion(0,0,0,1);

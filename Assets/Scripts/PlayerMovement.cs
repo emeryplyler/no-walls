@@ -33,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
 
         myCamera = GetComponentInChildren<Camera>();
         myController = gameObject.GetComponent<CharacterController>();
+
+        
     }
 
     // Update is called once per frame
@@ -75,8 +77,19 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 result = hit.point;
             alignment_script.checkToAlign(result);
-            print(result);
             //this.alignment_script.checkToAlign(result);
         }
     }
+    public void teleport(Vector3 teleportBy,  float rotation)
+    {
+        transform.position = teleportBy;
+        Physics.SyncTransforms();
+
+        camYRot += rotation;
+        //camXRot = rotation.eulerAngles.x;
+
+
+        
+    }
+
 }
