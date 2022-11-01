@@ -11,8 +11,7 @@ public class SpawnCoin : MonoBehaviour
     public GameObject Player;
     public GameObject[] CoinPrefab;
 
-    private int coinCtr = 0;
-    private int roomCtr = 0;
+    private int worldCtr = 0;
 
     void Start()
     {
@@ -24,8 +23,8 @@ public class SpawnCoin : MonoBehaviour
             SpawnPoints[rndIndex] = temp;
         }
 
-        // Spawn the First Coin
-        Instantiate(CoinPrefab[coinCtr], getVectors(SpawnPoints[roomCtr]), Quaternion.identity);
+        // Spawn the First key
+        SpawnKey();
     }
 
     // Update is called once per frame
@@ -34,6 +33,11 @@ public class SpawnCoin : MonoBehaviour
         
     }
     
+    private void SpawnKey() {
+        Instantiate(CoinPrefab[worldCtr], getVectors(SpawnPoints[worldCtr]), Quaternion.identity);
+        worldCtr++;
+    }
+
     private Vector3 getVectors(GameObject target) {
         Vector3 spawnCoord = target.GetComponent<RoomInfo>().center;
         return spawnCoord;
