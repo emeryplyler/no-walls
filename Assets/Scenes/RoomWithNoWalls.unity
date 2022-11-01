@@ -19565,7 +19565,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 524529421}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 1, z: 16}
+  m_LocalPosition: {x: 2, y: 0, z: 16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19585,7 +19585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: RoomA
-  center: {x: 2, y: 1, z: 16}
+  center: {x: 2, y: 0, z: 16}
 --- !u!1 &532048477
 GameObject:
   m_ObjectHideFlags: 0
@@ -21174,7 +21174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Room C
-  center: {x: -30, y: 9, z: 18}
+  center: {x: -30, y: 8, z: 18}
 --- !u!4 &556558725
 Transform:
   m_ObjectHideFlags: 0
@@ -21183,7 +21183,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556558723}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30, y: 9, z: 18}
+  m_LocalPosition: {x: -30, y: 8, z: 18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -78741,7 +78741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Room C
-  center: {x: -14, y: 9, z: 22}
+  center: {x: -14, y: 8, z: 22}
 --- !u!4 &2064625720
 Transform:
   m_ObjectHideFlags: 0
@@ -78750,7 +78750,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2064625718}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14, y: 9, z: 22}
+  m_LocalPosition: {x: -14, y: 8, z: 22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -78951,7 +78951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: RoomB
-  center: {x: -12, y: 13, z: -24}
+  center: {x: -12, y: 12, z: -24}
 --- !u!4 &2083794879
 Transform:
   m_ObjectHideFlags: 0
@@ -78960,7 +78960,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2083794877}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12, y: 13, z: -24}
+  m_LocalPosition: {x: -12, y: 12, z: -24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
