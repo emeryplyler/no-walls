@@ -22,7 +22,7 @@ public class teleportScript : MonoBehaviour
         thisCollider = this.GetComponent<BoxCollider>();
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerExit(Collider other)
     {
        
 
@@ -34,21 +34,21 @@ public class teleportScript : MonoBehaviour
             playerScript.teleport(targetPortal.transform.position + portalOffset,angleBy);
             //set other portal reference
             teleportScript tpScript =  targetPortal.GetComponent<teleportScript>();
-            tpScript.readyToTeleport = false;
+          //  tpScript.readyToTeleport = false;
 
 
         }
 
     }
 
-    void OnTriggerExit(Collider other)
-    {
-        if (other.name == "Capsule")
-        {
-            readyToTeleport = true;
+    // void OnTriggerExit(Collider other)
+    // {
+    //     if (other.name == "Capsule")
+    //     {
+    //         readyToTeleport = true;
 
-        }
-    }
+    //     }
+    // }
 
     // Update is called once per frame
     // void Update()
