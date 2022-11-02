@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3284581200231829435}
   - component: {fileID: 4031038514302614949}
+  - component: {fileID: 6648890909154084628}
   m_Layer: 0
   m_Name: KeyTail
   m_TagString: Untagged
@@ -47,6 +48,21 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: be867f6cf5007794890dc64ffc113699, type: 3}
+--- !u!114 &6648890909154084628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3659006442231464770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa1f9d27741161c4bb3eb61b834627e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  degreesPerSecond: 10
+  amplitude: 0.1
+  frequency: 1
 --- !u!1001 &2728453164727826740
 PrefabInstance:
   m_ObjectHideFlags: 0
