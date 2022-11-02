@@ -18,9 +18,10 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController myController;
     public float movSpeed = 10f;
 
+    [SerializeField] align_script alignment_script;
     // Gravity
     private float yVel;
-    [Tooltip("The amount to subtract from the player's Y velocity every update when gravity affets them.\nGets multiplied by Time.deltaTime .")]
+    [Tooltip("The amount to subtract from the player's Y velocity every update when gravity affects them.\nGets multiplied by Time.deltaTime .")]
     public float gravVelDelta = 100f;
     
     // Start is called before the first frame update
@@ -38,30 +39,51 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // Update camera
-        float mouseX = Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        float mouseX = Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.fixedDeltaTime;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.fixedDeltaTime;
 
         camYRot += mouseX;
         camXRot -= mouseY;
-        camXRot = Mathf.Clamp(camXRot, -90f, 90f); // Prevent looking past straight up and stright down
+        camXRot = Mathf.Clamp(camXRot, -90f, 90f); // Prevent looking past straight up and straight down
 
         myCamera.transform.rotation = Quaternion.Euler(camXRot, camYRot, 0);
 
         // Gravity
-        if (myController.isGrounded)
-        {
-            yVel = 0f;
-        }
-        else
-        {
-            yVel -= gravVelDelta * Time.deltaTime;
-        }
+        yVel = myController.isGrounded ? 0f : yVel - gravVelDelta * Time.deltaTime;
 
         // Update movement
-        Vector3 movVector = new Vector3(Input.GetAxis("Horizontal"), yVel, Input.GetAxis("Vertical"));
+        float horizontalMouseInput = Input.GetAxis("Horizontal");
+        float verticalMouseInput = Input.GetAxis("Vertical");
+        Vector3 movVector = new Vector3(horizontalMouseInput, yVel, verticalMouseInput);
+        movVector = Vector3.ClampMagnitude(movVector, 1f); // Prevent going faster diagonally
+
         Quaternion movRotationQuat = Quaternion.Euler(0, camYRot, 0); // Camera's rotation about y axis
         movVector = movRotationQuat * movVector;
 
         myController.Move(movVector * Time.deltaTime * movSpeed);
+
+        // Raycast for dummy room alignment
+        handleRaycast();
+    }
+    void handleRaycast()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(myCamera.transform.position,myCamera.transform.forward, out hit))
+        {
+            Vector3 result = hit.point;
+            alignment_script.checkToAlign(result);
+            //this.alignment_script.checkToAlign(result);
+        }
+    }
+    public void teleport(Vector3 teleportBy,  float rotation)
+    {
+        transform.position = teleportBy;
+        Physics.SyncTransforms();
+
+        camYRot += rotation;
+        //camXRot = rotation.eulerAngles.x;
+
+
+        
     }
 }
