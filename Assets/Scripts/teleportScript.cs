@@ -7,19 +7,32 @@ public class teleportScript : MonoBehaviour
     // Start is called before the first frame update
 
     bool movingTowards = true;
-    public GameObject thisPortal;
+    public GameObject thisStair;
     public GameObject targetPortal;
     public GameObject playerReference;
     public float angleBy = 0;
     public bool readyToTeleport = true;
     private float distanceToPlayer = 0;
     private float teleportThreshold = 3;
+    public align_script alignmentScript;
     private BoxCollider thisCollider;
+    private Renderer thisRenderer;
 
 
     void start()
     {
         thisCollider = this.GetComponent<BoxCollider>();
+        thisRenderer = this.GetComponent<Renderer>();
+    }
+
+
+
+
+    void OnBecameVisible()
+    {
+        int index = System.Array.IndexOf(alignmentScript.startingStair,thisStair);
+        alignmentScript.align(alignmentScript.startingStair[index].transform,
+            alignmentScript.destinationStair[index].transform,alignmentScript.rotateBy[index]);
     }
 
     void OnTriggerExit(Collider other)
@@ -38,8 +51,9 @@ public class teleportScript : MonoBehaviour
 
 
         }
-
     }
+
+
 
     // void OnTriggerExit(Collider other)
     // {

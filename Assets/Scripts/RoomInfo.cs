@@ -8,14 +8,12 @@ public class RoomInfo : MonoBehaviour
     public string name;
     public Vector3 center;
 
-    void Start()
-    {
-        this.transform.position = center;
+    void Start() {
+        center = this.transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    // Can be used to animate the key parts
+    void Update() {
         
     }
 }

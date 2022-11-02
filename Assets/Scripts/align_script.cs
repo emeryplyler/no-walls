@@ -24,6 +24,8 @@ public class align_script : MonoBehaviour
 
     public void checkToAlign(Vector3 _target)
     {
+
+        return;
         float closestDistance = Vector3.Distance(player.transform.position,currAlignment.transform.position);
         GameObject closestObject = currAlignment;
         foreach (var stair in startingStair)
@@ -48,7 +50,7 @@ public class align_script : MonoBehaviour
 
 
 
-    void align(Transform _alignTo, Transform _toAlign, int _rotate)
+    public void align(Transform _alignTo, Transform _toAlign, int _rotate)
     {
 
         //fakeRoom.transform.position = Vector3.zero;
