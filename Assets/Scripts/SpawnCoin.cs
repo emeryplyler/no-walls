@@ -12,6 +12,7 @@ public class SpawnCoin : MonoBehaviour
     public GameObject[] CoinPrefab;
 
     private int worldCtr = 0;
+    private bool willSpawn = true;
 
     void Start()
     {
@@ -34,8 +35,10 @@ public class SpawnCoin : MonoBehaviour
     }
     
     private void SpawnKey() {
+        if (!willSpawn) return;
         Instantiate(CoinPrefab[worldCtr], getVectors(SpawnPoints[worldCtr]), Quaternion.identity);
         worldCtr++;
+        if (worldCtr >= CoinPrefab.Length) willSpawn = false;
     }
 
     private Vector3 getVectors(GameObject target) {
