@@ -24,9 +24,18 @@ public class CameraShift : MonoBehaviour
     {
         //this is probably an inefficient way to do this, but it works for now
         //I kind of want to scale it exponentially, but this is a simplier way to implement it for now
-        shift = GameManager.instance.stopwatch/GameManager.instance.timer;
+        if(GameManager.instance.timerDone == false)
+        {
+            shift = GameManager.instance.stopwatch/GameManager.instance.timer;
 
-        m_ChromaticAberration.intensity.value = 1f * shift;
+            m_ChromaticAberration.intensity.value = shift;
+
+
+        }
+        
+        
+
+
 
     }
 }
