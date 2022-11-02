@@ -63,7 +63,6 @@ public class PlayerMovement : MonoBehaviour
         myController.Move(movVector * Time.deltaTime * movSpeed);
 
         // Raycast for dummy room alignment
-        handleRaycast();
     }
     void handleRaycast()
     {
