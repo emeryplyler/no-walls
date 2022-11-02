@@ -16,13 +16,12 @@ public class teleportScript : MonoBehaviour
     private float teleportThreshold = 3;
     public align_script alignmentScript;
     private BoxCollider thisCollider;
-    private Renderer thisRenderer;
+
 
 
     void start()
     {
         thisCollider = this.GetComponent<BoxCollider>();
-        thisRenderer = this.GetComponent<Renderer>();
     }
 
 
