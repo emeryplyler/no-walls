@@ -14,9 +14,9 @@ public class LightFlicker : MonoBehaviour
     [SerializeField]
     float intensityChangeMin = 0f;
     
-    [Range(0, 2)]
+    [Range(0, 5)]
     [SerializeField]
-    float intensityChangeMax = 2f;
+    float intensityChangeMax = 5f;
 
     // Start is called before the first frame update
     void Start()
