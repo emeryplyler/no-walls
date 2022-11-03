@@ -38,6 +38,10 @@ public class GameManager : MonoBehaviour
         if (timerDone == true){
             GUI.Button(new Rect(100, 100, 100, 20), "You are Dead!");
         }
+        
+        if (coinsCollected == 3){
+            locked = false;
+        }
 
     }
 
