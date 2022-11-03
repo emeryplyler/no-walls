@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public float stopwatch = 0;
     public bool timerDone = false;
     private int coinsCollected = 0;
+    public bool locked = true;
 
     void Awake()
     {
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -34,6 +35,10 @@ public class GameManager : MonoBehaviour
             timerDone = true; 
         }
 
+        if (timerDone == true){
+            GUI.Button(new Rect(100, 100, 100, 20), "You are Dead!");
+        }
+
     }
 
     public void OnKeyCollect()
@@ -42,4 +47,6 @@ public class GameManager : MonoBehaviour
         timer -= 10;
         coinSpawn.GetComponent<SpawnCoin>().SpawnKey();
     }
+    
+
 }
