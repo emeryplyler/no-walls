@@ -16,23 +16,56 @@ public class teleportScript : MonoBehaviour
     private float teleportThreshold = 3;
     public align_script alignmentScript;
     private BoxCollider thisCollider;
+    private Camera  portalCam;
+    public Camera playerCam;
+    public MeshRenderer screen;
+    public RenderTexture viewTexture;
 
+    
+// portal visual logic credit https://www.youtube.com/watch?v=cWpFZbjtSQg&ab_channel=SebastianLague 
 
-
-    void start()
+    void Awake()
     {
         thisCollider = this.GetComponent<BoxCollider>();
+        portalCam = GetComponentInChildren<Camera>();
+        portalCam.enabled = false;
+        screen = GetComponent<MeshRenderer>();
     }
-
-
-
-
-    void OnBecameVisible()
+    void CreateViewTexture()
     {
-        int index = System.Array.IndexOf(alignmentScript.startingStair,thisStair);
-        alignmentScript.align(alignmentScript.startingStair[index].transform,
-            alignmentScript.destinationStair[index].transform,alignmentScript.rotateBy[index]);
+        if (viewTexture == null || viewTexture.width != Screen.width || viewTexture.height != Screen.height)
+        {
+            if (viewTexture != null)
+            {
+                viewTexture.Release();
+            }
+            viewTexture = new RenderTexture(Screen.width,Screen.height,0);
+
+            portalCam.targetTexture = viewTexture;
+            targetPortal.GetComponent<teleportScript>().screen.material.SetTexture("_MainTex", viewTexture);
+        }
     }
+
+
+    void Render()
+    {
+        //print("ttttt");
+        screen.enabled = false;
+        CreateViewTexture();
+        var m = transform.localToWorldMatrix * targetPortal.transform.worldToLocalMatrix * playerCam.transform.localToWorldMatrix;
+        
+        portalCam.transform.SetPositionAndRotation(m.GetColumn(3),m.rotation);
+        
+        portalCam.Render();
+        screen.enabled = true;
+    }
+
+    // void OnBecameVisible()
+    // {
+    //     int index = System.Array.IndexOf(alignmentScript.startingStair,thisStair);
+    //     alignmentScript.align(alignmentScript.startingStair[index].transform,
+    //         alignmentScript.destinationStair[index].transform,alignmentScript.rotateBy[index]);
+    // }
 
     void OnTriggerExit(Collider other)
     {
