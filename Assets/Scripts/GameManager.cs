@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public bool timerDone = false;
     private int coinsCollected = 0;
     public bool locked = true;
+    public GameObject player;
 
     void Awake()
     {
@@ -22,7 +23,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        player = GameObject.Find("Capusule");
     }
 
     // Update is called once per frame
@@ -34,15 +35,10 @@ public class GameManager : MonoBehaviour
         {
             timerDone = true; 
         }
-
-        if (timerDone == true){
-            GUI.Button(new Rect(100, 100, 100, 20), "You are Dead!");
-        }
         
         if (coinsCollected == 3){
             locked = false;
         }
-
     }
 
     public void OnKeyCollect()
@@ -51,6 +47,11 @@ public class GameManager : MonoBehaviour
         timer -= 10;
         coinSpawn.GetComponent<SpawnCoin>().SpawnKey();
     }
-    
 
+    void OnGUI(){
+        if (timerDone == true){
+            GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "You are Dead!");
+            player.GetComponent<PlayerMovement>().enabled = false;
+        }
+    }
 }
