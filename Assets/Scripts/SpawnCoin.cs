@@ -16,6 +16,8 @@ public class SpawnCoin : MonoBehaviour
 
     void Start()
     {
+        worldCtr = 0;
+        willSpawn = true;
         // Randomize the Room List so the order of spawn is different
         for (int i = 0; i < SpawnPoints.Length; i++) {
             GameObject temp = SpawnPoints[i];
@@ -34,7 +36,7 @@ public class SpawnCoin : MonoBehaviour
         
     }
     
-    private void SpawnKey() {
+    public void SpawnKey() {
         if (!willSpawn) return;
         Instantiate(CoinPrefab[worldCtr], getVectors(SpawnPoints[worldCtr]), Quaternion.identity);
         worldCtr++;

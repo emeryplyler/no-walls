@@ -6,9 +6,11 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance;
+    public GameObject coinSpawn;
     public float timer = 60;
     public float stopwatch = 0;
     public bool timerDone = false;
+    private int coinsCollected = 0;
 
     void Awake()
     {
@@ -32,7 +34,12 @@ public class GameManager : MonoBehaviour
             timerDone = true; 
         }
 
+    }
 
-
+    public void OnKeyCollect()
+    {
+        stopwatch = 0;
+        timer -= 10;
+        coinSpawn.GetComponent<SpawnCoin>().SpawnKey();
     }
 }
