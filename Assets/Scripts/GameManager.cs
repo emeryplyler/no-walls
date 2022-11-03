@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Capusule");
+        player = GameObject.Find("Capsule");
     }
 
     // Update is called once per frame
