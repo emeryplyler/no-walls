@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private int coinsCollected = 0;
     public bool locked = true;
     public GameObject player;
+    public bool won = false;
 
     void Awake()
     {
@@ -33,11 +34,13 @@ public class GameManager : MonoBehaviour
 
         if (stopwatch > timer)
         {
-            timerDone = true; 
+            timerDone = true;
+            stopwatch = 0;
         }
         
         if (coinsCollected == 3){
             locked = false;
+            won = true;
         }
     }
 
@@ -46,11 +49,16 @@ public class GameManager : MonoBehaviour
         stopwatch = 0;
         timer -= 10;
         coinSpawn.GetComponent<SpawnCoin>().SpawnKey();
+        coinsCollected ++;
     }
 
     void OnGUI(){
-        if (timerDone == true){
-            GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "You are Dead!");
+        GUIStyle dieButton = new GUIStyle(GUI.skin.button);
+        dieButton.fontSize = 30;
+        dieButton.normal.textColor = Color.red;
+
+        if (timerDone == true && won == false){
+            GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "You are Dead!", dieButton);
             player.GetComponent<PlayerMovement>().enabled = false;
         }
     }
