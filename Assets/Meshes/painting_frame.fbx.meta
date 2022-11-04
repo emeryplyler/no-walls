@@ -14,6 +14,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: glass
     second: {fileID: 2100000, guid: ee77b05b00fa1a0428169b2f535e176e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: picture area
+    second: {fileID: 2100000, guid: c1b7f0180d21d8441a9d208532b31f00, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -98,7 +103,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.03
+    globalScale: 3
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
