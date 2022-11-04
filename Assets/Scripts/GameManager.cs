@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public bool won = false;
 
+    private GameObject collectImage;
+
     void Awake()
     {
         instance = this; 
@@ -25,6 +27,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Capsule");
+        collectImage = GameObject.Find("Canvas/CollectImage");
     }
 
     // Update is called once per frame
@@ -41,6 +44,7 @@ public class GameManager : MonoBehaviour
         if (coinsCollected == 3){
             locked = false;
             won = true;
+            collectImage.SetActive(false);
         }
     }
 

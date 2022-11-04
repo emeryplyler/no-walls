@@ -30,7 +30,7 @@ public class KeyHover : MonoBehaviour
         }
         else
         {
-            collectImage.SetActive(false);
+            if (collectImage) collectImage.SetActive(false);
             this.gameObject.GetComponent<Outline>().OutlineWidth = 0f;
         }
     }
