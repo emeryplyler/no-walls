@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.won){
+        if (GameManager.instance.gameOver){
             return;
         }
         // Update camera

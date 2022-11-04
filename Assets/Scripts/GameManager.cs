@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public bool won = false;
     public Text timerText;
     public float countDown;
+    public bool gameOver = false;
 
     private GameObject collectImage;
 
@@ -56,7 +57,7 @@ public class GameManager : MonoBehaviour
     public void OnKeyCollect()
     {
         stopwatch = 0;
-        timer -= 10;
+        timer -= 15;
         coinSpawn.GetComponent<SpawnCoin>().SpawnKey();
         coinsCollected ++;
     }
@@ -72,9 +73,11 @@ public class GameManager : MonoBehaviour
         }
 
         GUIStyle timerButt = new GUIStyle(GUI.skin.button);
-        timerButt.fontSize = 15;
+        timerButt.fontSize = 20;
         timerButt.normal.textColor = Color.white;
 
-        GUI.Box(new Rect(0, Screen.height-20, Screen.width, 20), countDown.ToString("#00"), timerButt);
+        if (!gameOver){
+            GUI.Box(new Rect(0, Screen.height-30, Screen.width, 30), countDown.ToString("#00"), timerButt);
+        }
     }
 }

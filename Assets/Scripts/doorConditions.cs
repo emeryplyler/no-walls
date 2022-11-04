@@ -20,6 +20,7 @@ public class doorConditions : MonoBehaviour
             showText = true;
         } else if (GameManager.instance.won){
             showWinningText = true;
+            GameManager.instance.gameOver = true;
         }
     }
 
@@ -44,9 +45,8 @@ public class doorConditions : MonoBehaviour
                 showText = false;
             }
         } else if (showWinningText){
-            if (GUI.Button(new Rect(0, 0, Screen.width, Screen.height), "You've Escaped!", winButton)){
-                player.GetComponent<PlayerMovement>().enabled = false;
-            }
+            GUI.Button(new Rect(0, 0, Screen.width, Screen.height), "You've Escaped!", winButton);
+            GameManager.instance.gameOver = true;
         }
     }
 }
