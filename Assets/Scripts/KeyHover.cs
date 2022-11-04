@@ -5,10 +5,13 @@ using UnityEngine;
 public class KeyHover : MonoBehaviour
 {
     private GameObject gameManager;
+    private GameObject collectImage;
 
     void Start()
     {
         gameManager = GameObject.Find("GameManager");
+        collectImage = GameObject.Find("Canvas/CollectImage");
+        collectImage.SetActive(false);
     }
     // Update is called once per frame
     void Update()
@@ -17,6 +20,7 @@ public class KeyHover : MonoBehaviour
         RaycastHit hit;
         if (GetComponent<Collider>().Raycast(ray, out hit, 100f))
         {
+            collectImage.SetActive(true);
             this.gameObject.GetComponent<Outline>().OutlineWidth = 2f;
             if (Input.GetKeyDown(KeyCode.F))
             {
@@ -26,6 +30,7 @@ public class KeyHover : MonoBehaviour
         }
         else
         {
+            collectImage.SetActive(false);
             this.gameObject.GetComponent<Outline>().OutlineWidth = 0f;
         }
     }
