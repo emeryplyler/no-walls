@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
+    public AudioSource music;
     public static GameManager instance;
     public GameObject coinSpawn;
     public float timer = 60;
@@ -40,6 +41,11 @@ public class GameManager : MonoBehaviour
         stopwatch += Time.deltaTime;
         countDown = timer-stopwatch;
 
+
+        if (countDown <= 25){
+            SoundManager.instance.PlayHere(2, music);
+        }
+
         if (stopwatch > timer)
         {
             timerDone = true;
@@ -68,8 +74,12 @@ public class GameManager : MonoBehaviour
         dieButton.normal.textColor = Color.red;
 
         if (timerDone == true && won == false){
+            SoundManager.instance.StopSoundHere(2, music);
             SoundManager.instance.PlayGlobal(1);
-            GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "You are Dead!", dieButton);
+            GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "You are Dead! Press F to restart!", dieButton);
+            if (Input.GetKeyDown(KeyCode.F)){
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
             player.GetComponent<PlayerMovement>().enabled = false;
         }
 
