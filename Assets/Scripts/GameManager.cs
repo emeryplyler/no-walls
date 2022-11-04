@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
         dieButton.normal.textColor = Color.red;
 
         if (timerDone == true && won == false){
+            SoundManager.instance.PlayGlobal(1);
             GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "You are Dead!", dieButton);
             player.GetComponent<PlayerMovement>().enabled = false;
         }
