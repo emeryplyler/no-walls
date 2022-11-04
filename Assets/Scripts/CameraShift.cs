@@ -11,6 +11,11 @@ public class CameraShift : MonoBehaviour
     ChromaticAberration m_ChromaticAberration;
     public float shift;
 
+    public static float EaseInQuad(float start, float end, float value)
+    {
+        end -= start;
+        return end * value * value + start;
+    }
 
     void Start()
     {
@@ -28,7 +33,7 @@ public class CameraShift : MonoBehaviour
         {
            shift = GameManager.instance.stopwatch/GameManager.instance.timer;
 
-             m_ChromaticAberration.intensity.value = shift;
+            m_ChromaticAberration.intensity.value = Mathf.Lerp(0, 1, EaseInQuad(0, 1, shift));
 
 
         }
