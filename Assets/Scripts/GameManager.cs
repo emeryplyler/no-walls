@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class GameManager : MonoBehaviour
     public bool locked = true;
     public GameObject player;
     public bool won = false;
+    public Text timerText;
+    public float countDown;
 
     private GameObject collectImage;
 
@@ -34,6 +37,7 @@ public class GameManager : MonoBehaviour
     void Update() 
     {
         stopwatch += Time.deltaTime;
+        countDown = timer-stopwatch;
 
         if (stopwatch > timer)
         {
@@ -46,6 +50,7 @@ public class GameManager : MonoBehaviour
             won = true;
             collectImage.SetActive(false);
         }
+
     }
 
     public void OnKeyCollect()
@@ -65,5 +70,11 @@ public class GameManager : MonoBehaviour
             GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "You are Dead!", dieButton);
             player.GetComponent<PlayerMovement>().enabled = false;
         }
+
+        GUIStyle timerButt = new GUIStyle(GUI.skin.button);
+        timerButt.fontSize = 15;
+        timerButt.normal.textColor = Color.white;
+
+        GUI.Box(new Rect(0, Screen.height-20, Screen.width, 20), countDown.ToString("#00"), timerButt);
     }
 }
